@@ -198,7 +198,12 @@ body{
 .player#player4 , .player4.cell .content{
     background-color: #d061cd;
 }
-
+.player.jailed{
+    background-image:url(../images/jail.png);
+    background-size:contain;
+    background-position:center;
+    background-repeat: no-repeat;
+}
 .player.current-turn{
     background-image:url(../images/crown.png);
     background-size:contain;
@@ -214,7 +219,7 @@ body{
     width: 25%;
     height: 25%;
     margin: 4%;
-    background-color: black;
+    background-color:#364c9c;
     border-radius: 100px;
     opacity:0;
 }
