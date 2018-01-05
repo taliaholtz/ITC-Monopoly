@@ -12,6 +12,21 @@ body{
     margin-bottom:10px;
     
 }
+.standings{
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position:absolute;
+    width:170px;
+    height:150px;
+    margin:10px;
+    background-color: rgb(199,252,227);
+    border:1px solid black;
+}
+.standings .bank{
+    font-weight: bold;
+    text-decoration: underline;
+    padding:5px;
+}
 
 .board .cell{
     display:inline-block;
@@ -200,6 +215,30 @@ body{
 }
 .player.jailed{
     background-image:url(../images/jail.png);
+    background-size:contain;
+    background-position:center;
+    background-repeat: no-repeat;
+}
+.player1 #player1{
+    background-image:url(../images/onProperty.png);
+    background-size:contain;
+    background-position:center;
+    background-repeat: no-repeat;
+}
+.player2 #player2{
+    background-image:url(../images/onProperty.png);
+    background-size:contain;
+    background-position:center;
+    background-repeat: no-repeat;
+}
+.player3 #player3{
+    background-image:url(../images/onProperty.png);
+    background-size:contain;
+    background-position:center;
+    background-repeat: no-repeat;
+}
+.player4 #player4{
+    background-image:url(../images/onProperty.png);
     background-size:contain;
     background-position:center;
     background-repeat: no-repeat;

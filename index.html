@@ -11,6 +11,9 @@
 		
 	</head>
 	<body>
+        <div class="standings">
+                <div class="bank">Player Totals:</div>
+        </div>
         <div class="board">
                 <div id="cell21" class="top left corner game cell free-parking"><div class="content"></div></div>
                 <div id="cell22" class="top game cell available property" data-group="group5"><div class="content"></div><div class="title"></div></div>
@@ -163,7 +166,7 @@
                         <div id="intro" class="popup-page" style="display:none;">
                                 <div class="popup-title">Welcome to Monopoly</div>
                                 <div class="popup-content">Please choose how many players?<br /><input id="num-of-players" type="text"><button class="clickable">START</button><br>
-                                <div class="invalid-error" >Number of players must be between 1 and 4</div></div>
+                                <div class="invalid-error" >Number of players must be between 2 and 4</div></div>
                         </div>
                         <div id="buy" class="popup-page" style="display:none;">
                                 <div class="popup-title">This cell is available for sale!</div>
@@ -184,6 +187,12 @@
                                 <div class="popup-content">This property belongs to <span id="player-placeholder"></span><br>
                                         You should pay him <span id="amount-placeholder"></span><br />
                                         <button id="ok" class="clickable">:-(</button>
+                                </div>
+                        </div>
+                        <div id="broke" class="popup-page" style="display:none;">
+                                <div class="popup-title">Bankrupt!</div>
+                                <div class="popup-content">You're out of money. You lose!<br />
+                                        <button id="ok" class="clickable">Better luck next time</button>
                                 </div>
                         </div>
                         <div id="chance" class="popup-page" style="display:none;">
