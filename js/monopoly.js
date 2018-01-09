@@ -1,4 +1,5 @@
 var Monopoly = {};
+Monopoly.numOfPlayers = 0;
 Monopoly.allowRoll = true;
 Monopoly.moneyAtStart = 500;
 Monopoly.doubleCounter = 0;
@@ -57,12 +58,17 @@ Monopoly.updatePlayersMoney = function (player, amount) {
         Monopoly.playSound("chaching");
         Monopoly.setNextPlayerTurn();
     }
-    //Monopoly.updatePlayerStandings(player, playersMoney);
+    Monopoly.updatePlayerStandings();
 };
 
-// Monopoly.updatePlayerStandings=function(player,amount){
-//     $(".standings ."+player+"-standing").text(player+": $"+amount);
-// };
+Monopoly.updatePlayerStandings=function(){
+    console.log("hey")
+    for (var i = 1; i <= Monopoly.numOfPlayers; i++) {
+        var curTotal = $("#player" + i).attr("data-money");
+        var player = $(".player" + i + "-standing");
+        player.text("Player " + i + ": $" + curTotal);
+    }
+};
 
 Monopoly.rollDice = function () {
     //randomize dice rolls
@@ -262,10 +268,10 @@ Monopoly.closeAndNextTurn = function () {
 
 Monopoly.initPopups = function () {
     $(".popup-page#intro").find("button").click(function () {
-        var numOfPlayers = $(this).closest(".popup-page").find("input").val();
-        if (Monopoly.isValidInput("numofplayers", numOfPlayers)) {
-            Monopoly.createPlayers(numOfPlayers);
-            Monopoly.showPlayerStandings(numOfPlayers);
+        Monopoly.numOfPlayers = $(this).closest(".popup-page").find("input").val();
+        if (Monopoly.isValidInput("numofplayers", Monopoly.numOfPlayers)) {
+            Monopoly.createPlayers(Monopoly.numOfPlayers);
+            Monopoly.showPlayerStandings(Monopoly.numOfPlayers);
             Monopoly.closePopup();
         }
     });
