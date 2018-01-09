@@ -42,6 +42,9 @@ Monopoly.getPlayersMoney = function (player) {
 Monopoly.updatePlayersMoney = function (player, amount) {
     var playersMoney = parseInt(player.attr("data-money"));
     playersMoney -= amount;
+    player.attr("data-money", playersMoney);
+    player.attr("title", player.attr("id") + ": $" + playersMoney);
+    Monopoly.updatePlayerStandings();
     //if broke
     if (playersMoney <= 0) {
         var popup = Monopoly.getPopup("broke");
@@ -49,20 +52,17 @@ Monopoly.updatePlayersMoney = function (player, amount) {
         popup.find("button").unbind("click").bind("click", function () {
             Monopoly.closePopup("broke");
             Monopoly.setNextPlayerTurn();
+            Monopoly.removePlayer(player);
         });
         Monopoly.showPopup("broke");
     } else {
         //continue game play
-        player.attr("data-money", playersMoney);
-        player.attr("title", player.attr("id") + ": $" + playersMoney);
         Monopoly.playSound("chaching");
         Monopoly.setNextPlayerTurn();
     }
-    Monopoly.updatePlayerStandings();
 };
 
-Monopoly.updatePlayerStandings=function(){
-    console.log("hey")
+Monopoly.updatePlayerStandings = function () {
     for (var i = 1; i <= Monopoly.numOfPlayers; i++) {
         var curTotal = $("#player" + i).attr("data-money");
         var player = $(".player" + i + "-standing");
@@ -148,6 +148,10 @@ Monopoly.setNextPlayerTurn = function () {
             Monopoly.setNextPlayerTurn();
             return;
         }
+        if (nextPlayer.is(".broke")) {
+            Monopoly.setNextPlayerTurn();
+        }
+
     }
     Monopoly.closePopup();
     Monopoly.allowRoll = true;
@@ -318,6 +322,17 @@ Monopoly.createPlayers = function (numOfPlayers) {
         player.attr("data-money", Monopoly.moneyAtStart);
     }
 };
+
+Monopoly.removePlayer = function (player) {
+    player.css("display", "none");
+    player.addClass("broke");
+    var pin = player.attr("id");
+    var playerHoldings = $("div").find("." + pin);
+    playerHoldings.addClass("available");
+    playerHoldings.removeClass(pin);
+    playerHoldings.attr("data-owner", "");
+    playerHoldings.attr("data-rent", "");
+}
 
 Monopoly.showPlayerStandings = function (numOfPlayers) {
     for (var i = 1; i <= numOfPlayers; i++) {
