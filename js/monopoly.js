@@ -84,8 +84,9 @@ Monopoly.rollDice = function () {
             Monopoly.sendToJail(currentPlayer);
             Monopoly.doubleCounter = 0;
         }
+    }else{
+        Monopoly.doubleCounter = 0;
     }
-    Monopoly.doubleCounter = 0;
     var currentPlayer = Monopoly.getCurrentPlayer();
     Monopoly.handleAction(currentPlayer, "move", result1 + result2);
 };
