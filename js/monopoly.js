@@ -78,16 +78,18 @@ Monopoly.rollDice = function () {
     $(".dice#dice1").attr("data-num", result1).find(".dice-dot.num" + result1).css("opacity", 1);
     $(".dice#dice2").attr("data-num", result2).find(".dice-dot.num" + result2).css("opacity", 1);
     //track number of doubles rolled per turn
+    var currentPlayer = Monopoly.getCurrentPlayer();
     if (result1 == result2) {
         Monopoly.doubleCounter++;
+        console.log(Monopoly.doubleCounter);
         if (Monopoly.doubleCounter == 3) {
-            Monopoly.sendToJail(currentPlayer);
+            Monopoly.handleGoToJail(currentPlayer);
             Monopoly.doubleCounter = 0;
         }
     }else{
         Monopoly.doubleCounter = 0;
+        console.log(Monopoly.doubleCounter);
     }
-    var currentPlayer = Monopoly.getCurrentPlayer();
     Monopoly.handleAction(currentPlayer, "move", result1 + result2);
 };
 
@@ -316,6 +318,7 @@ Monopoly.createPlayers = function (numOfPlayers) {
     var startCell = $(".go");
     for (var i = 1; i <= numOfPlayers; i++) {
         var player = $("<div />").addClass("player shadowed").attr("id", "player" + i).attr("title", "player" + i + ": $" + Monopoly.moneyAtStart);
+        player.text(i);
         startCell.find(".content").append(player);
         if (i == 1) {
             player.addClass("current-turn");

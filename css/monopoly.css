@@ -186,6 +186,12 @@ body{
     height: 25%;
     border-radius:20px;
     display:inline-block;
+    color:white;
+    text-shadow: 1px 1px black;
+    font-size:12px;
+    font-family:arial;
+    padding-top:2px;
+    text-align: center;
 }
 
 .bottom.game.cell:not(.corner) .player , .top.game.cell:not(.corner) .player{
